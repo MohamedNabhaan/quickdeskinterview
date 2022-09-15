@@ -15,8 +15,13 @@ public class FIFOQUEUE implements IQueuable {
 
     @Override
     public String dequeue() {
-        String res_val= fifoQueue[i];
-        fifoQueue[i]=null;
+        String res_val= fifoQueue[0];
+        int j=0;
+        while (j<i-1){
+            fifoQueue[j]=fifoQueue[j+1];
+            j++;
+        }
+        i--;
         return res_val;
     }
 
@@ -28,11 +33,12 @@ public class FIFOQUEUE implements IQueuable {
             res[j]=fifoQueue[j];
             j++;
         }
+
         return res;
     }
 
     @Override
     public int size() {
-        return fifoQueue.length;
+        return i;
     }
 }
